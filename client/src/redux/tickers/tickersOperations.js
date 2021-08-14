@@ -4,7 +4,7 @@ import {
   loadTickersRequest,
   loadTickersSuccess,
   loadTickersError,
-} from './TickersActions';
+} from './tickersActions';
 
 const uploadTickers = () => (dispatch) => {
   dispatch(loadTickersRequest());

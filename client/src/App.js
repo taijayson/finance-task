@@ -1,5 +1,9 @@
-import './App.css';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import uploadTickers from './redux/tickers/tickersOperations';
 import List from './components/TickersList/TickersList';
+import './App.css';
 
 const App = () => {
   return (

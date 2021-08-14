@@ -5,7 +5,7 @@ import {
   loadTickersRequest,
   loadTickersSuccess,
   loadTickersError,
-} from './TickersActions';
+} from './tickersActions';
 
 const tickers = createReducer([], {
   [loadTickersSuccess]: (_, { payload }) => payload,
@@ -22,7 +22,7 @@ const error = createReducer(null, {
   [loadTickersError]: (_, { payload }) => payload,
 });
 
-export default combineReducer({
+export default combineReducers({
   tickers,
   loading,
   error,
