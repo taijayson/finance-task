@@ -1,0 +1,17 @@
+import socket from '../../services/socket';
+
+import {
+  loadTickersRequest,
+  loadTickersSuccess,
+  loadTickersError,
+} from './TickersActions';
+
+const uploadTickers = () => (dispatch) => {
+  dispatch(loadTickersRequest());
+  return socket
+    .on('ticker')
+    .then(({ data }) => dispatch(loadTickersSuccess(data)))
+    .catch((err) => dispatch(loadTickersError(err.message)));
+};
+
+export default uploadTickers;
