@@ -8,10 +8,12 @@ import {
 
 const uploadTickers = () => (dispatch) => {
   dispatch(loadTickersRequest());
-  return socket
-    .on('ticker')
-    .then(({ data }) => dispatch(loadTickersSuccess(data)))
-    .catch((err) => dispatch(loadTickersError(err.message)));
+  return socket.on('ticker', (data) => {
+    if (data) {
+      return dispatch(loadTickersSuccess(data));
+    }
+    return dispatch(loadTickersError(new Error('Tickers fetching failed')));
+  });
 };
 
 export default uploadTickers;

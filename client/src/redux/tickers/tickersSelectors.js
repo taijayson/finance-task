@@ -1,4 +1,4 @@
-const getAllTickers = (state) => state.tickers.items;
-const getLoading = (state) => state.tickers.loading;
+const getAllTickers = (state) => state.tickers;
+const getLoading = (state) => state.loading;
 
 export { getAllTickers, getLoading };

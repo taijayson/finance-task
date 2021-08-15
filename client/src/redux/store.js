@@ -5,7 +5,7 @@ import tickersReducer from './tickers/tickersReducers';
 // import storage from 'redux-persist/lib/storage';
 // import {
 //   persistStore,
-//     persistReducer,
+//   persistReducer,
 //   FLUSH,
 //   REHYDRATE,
 //   PAUSE,
@@ -28,12 +28,11 @@ const store = configureStore({
   //   middleware: (getDefaultMiddleware) =>
   //     getDefaultMiddleware({
   //       serializableCheck: {
-  //         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //       },
-  //     }),
+  //         // ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+  //   },
+  // }),
 });
 
 // const persistor = persistStore(store);
 
-const mainStore = { store };
-export default mainStore;
+export default store;
