@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 
-import uploadTickers from '../redux/tickers/tickersOperations';
+// import uploadTickers from '../redux/tickers/tickersOperations';
 import List from '../components/TickersList/TickersList';
 import './App.css';
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(uploadTickers());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(uploadTickers());
+  // }, [dispatch]);
 
   return (
     <div className='App'>
