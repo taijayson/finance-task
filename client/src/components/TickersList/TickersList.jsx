@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -7,6 +7,8 @@ import {
 } from '../../redux/tickers/tickersSelectors';
 
 import uploadTickers from '../../redux/tickers/tickersOperations';
+
+import { Flex, Box, Text } from 'rebass';
 
 const List = () => {
   const dispatch = useDispatch();
@@ -18,9 +20,46 @@ const List = () => {
   }, [dispatch]);
 
   return (
-    <div className='List'>
+    <>
       {loading && <h1>LOADING...</h1>}
-      <ul className='list'>
+      <ul style={{ listStyle: 'none' }}>
+        <Flex mx={-2}>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              Ticker
+            </Text>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              Price
+            </Text>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              Exchange
+            </Text>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              Change
+            </Text>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              ChangePercent
+            </Text>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              Divident
+            </Text>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Text p={1} color='#000000' bg='primary'>
+              Yield
+            </Text>
+          </Box>
+        </Flex>
         {tickers.length > 0 &&
           tickers.map(
             ({
@@ -34,15 +73,49 @@ const List = () => {
               last_trade_time,
             }) => (
               <li key={ticker}>
-                Name: {ticker}, Exch: {exchange}, Price:
-                {price}, Change: {change}, Ch%: {change_percent}, DivD:
-                {dividend}
-                {dividend}, Yield: {yld}, LTT: {last_trade_time}
+                {/* LTT: {last_trade_time} */}
+                <Flex mx={-2}>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {ticker}
+                    </Text>
+                  </Box>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {price}
+                    </Text>
+                  </Box>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {exchange}
+                    </Text>
+                  </Box>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {change}
+                    </Text>
+                  </Box>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {change_percent}
+                    </Text>
+                  </Box>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {dividend}
+                    </Text>
+                  </Box>
+                  <Box width={1 / 2} px={2}>
+                    <Text p={1} color='background' bg='primary'>
+                      {yld}
+                    </Text>
+                  </Box>
+                </Flex>
               </li>
             )
           )}
       </ul>
-    </div>
+    </>
   );
 };
 

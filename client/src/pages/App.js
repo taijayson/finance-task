@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div className='App'>
-      <header className='App-header'>Hello world!!!</header>
+      <header className='App-header'>TickFin</header>
       <List />
     </div>
   );
