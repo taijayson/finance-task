@@ -1,6 +1,7 @@
 // import { useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
-
+import theme from '../services/theme';
+import { ThemeProvider } from 'theme-ui';
 // import uploadTickers from '../redux/tickers/tickersOperations';
 import List from '../components/TickersList/TickersList';
 import './App.css';
@@ -15,7 +16,9 @@ const App = () => {
   return (
     <div className='App'>
       <header className='App-header'>TickFin</header>
-      <List />
+      <ThemeProvider theme={theme}>
+        <List />
+      </ThemeProvider>
     </div>
   );
 };
