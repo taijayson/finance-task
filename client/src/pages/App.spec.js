@@ -1,4 +1,6 @@
 import { shallow } from 'enzyme';
+import TickersList from '../components/TickersList/TickersList';
+import { Heading } from 'rebass';
 
 import App from './App';
 
@@ -9,13 +11,18 @@ describe('testing react App', () => {
   beforeEach(() => {
     component = setUp();
   });
+
   it('should renders App page', () => {
     expect(component.exists()).toBe(true);
   });
 
-  // it('should contain TickersList', () => {
+  it('should contain Heading', () => {
+    const wrapper = component.find(Heading);
+    expect(wrapper.length).toBe(1);
+  });
 
-  //   const wrapper = component.find('.tickersLIst');
-  //   expect(wrapper.length).toBe(1);
-  // });
+  it('should contain TickersList', () => {
+    const wrapper = component.find(TickersList);
+    expect(wrapper).toEqual({});
+  });
 });
