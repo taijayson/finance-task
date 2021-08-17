@@ -63,9 +63,9 @@ describe('testing reducers', () => {
       payload: ['ticker'],
     };
 
-    const newState = reducers(initialState, successAction);
+    const testState = reducers(initialState, successAction);
 
-    expect(newState).toMatchObject({
+    expect(testState).toMatchObject({
       tickers: ['ticker'],
       loading: false,
       error: null,
@@ -77,9 +77,9 @@ describe('testing reducers', () => {
       type: 'tickers/loadTickersRequest',
     };
 
-    const newState = reducers(initialState, requestAction);
+    const testState = reducers(initialState, requestAction);
 
-    expect(newState).toMatchObject({
+    expect(testState).toMatchObject({
       tickers: [],
       loading: true,
       error: null,
@@ -92,9 +92,9 @@ describe('testing reducers', () => {
       payload: { message: 'fail' },
     };
 
-    const newState = reducers(initialState, errorAction);
+    const testState = reducers(initialState, errorAction);
 
-    expect(newState).toMatchObject({
+    expect(testState).toMatchObject({
       tickers: [],
       loading: false,
       error: { message: 'fail' },
