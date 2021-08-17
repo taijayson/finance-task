@@ -6,7 +6,7 @@ import {
   getLoading,
 } from '../../redux/tickers/tickersSelectors';
 
-import uploadTickers from '../../redux/tickers/tickersOperations';
+// import uploadTickers from '../../redux/tickers/tickersOperations';
 
 import { Flex, Box, Text } from 'rebass';
 
@@ -17,27 +17,9 @@ import moment from 'moment';
 
 // import variants from '../../services/variants';
 // console.log(variants);
-const List = () => {
-  // const initialState = {
-  //   prevNum:null
-  // };
-
-  const dispatch = useDispatch();
+const TickersList = () => {
   const tickers = useSelector(getAllTickers);
   const loading = useSelector(getLoading);
-
-  // const prevState = usePrev(prevNum);
-  // console.log(prevState);
-
-  // const [prevNum, setPrevNum] = useState(null);
-  // console.log(prevNum);
-
-  // console.log(state);
-
-  useEffect(() => {
-    dispatch(uploadTickers());
-  }, [dispatch]);
-
   return (
     <>
       {loading && <h1>LOADING...</h1>}
@@ -65,7 +47,7 @@ const List = () => {
           </Box>
           <Box width={1 / 2} px={2}>
             <Text p={1} color='#000000' bg='primary'>
-              ChangePercent
+              Change Percent
             </Text>
           </Box>
           <Box width={1 / 2} px={2}>
@@ -160,4 +142,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default TickersList;

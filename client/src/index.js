@@ -7,13 +7,10 @@ import App from './pages/App';
 import store from './redux/store';
 
 import theme from './services/theme';
-import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

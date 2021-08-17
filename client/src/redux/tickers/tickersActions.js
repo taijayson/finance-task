@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const loadTickersRequest = createAction('Tickers/loadTickersRequest');
-const loadTickersSuccess = createAction('Tickers/loadTickersSuccess');
-const loadTickersError = createAction('Tickers/loadTickersError');
+const loadTickersRequest = createAction('tickers/loadTickersRequest');
+const loadTickersSuccess = createAction('tickers/loadTickersSuccess');
+const loadTickersError = createAction('tickers/loadTickersError');
 
 export { loadTickersRequest, loadTickersSuccess, loadTickersError };
