@@ -23,6 +23,6 @@ describe('testing react App', () => {
 
   it('should contain TickersList', () => {
     const wrapper = component.find(TickersList);
-    expect(wrapper).toEqual({});
+    expect(wrapper.exists()).toBe(true);
   });
 });
