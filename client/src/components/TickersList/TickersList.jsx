@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import usePrevious from '../../hooks/usePrevious';
+
 import uploadTickers from '../../redux/tickers/tickersOperations';
 
 import {
@@ -12,9 +13,6 @@ import { Flex, Box, Text } from 'rebass';
 
 import moment from 'moment';
 
-const oldArr = [];
-// const newArr = [];
-
 const TickersList = () => {
   const dispatch = useDispatch();
 
@@ -25,77 +23,23 @@ const TickersList = () => {
   const tickers = useSelector(getAllTickers);
   const loading = useSelector(getLoading);
 
-  let tickArr = [];
-  const oldTickArr = oldArr.slice(-6);
-  // console.log(tickers);
+  const prevTickers = usePrevious(tickers) || [];
 
-  const newYld = tickers.map((item) => {
-    // console.log(item);
-    return {
-      ticker: item.ticker,
-      yield: item.yield,
-    };
-  });
-  const yldColorArr = () => {
-    let initial = [];
-
-    for (const i of oldTickArr) {
-      const tick = newYld.map((item) => {
-        if (item.name === i.name && item.yield > i.yield) {
-          return 'green';
-        }
-        return 'red';
-      });
-      if (tick) {
-        initial = tick;
-        // return tick;
+  const newTickers = tickers.map((item) => {
+    const prevYld = prevTickers.find((it) => {
+      if (item.ticker === it.ticker) {
+        return it;
       }
+      return null;
+    });
+
+    if (prevYld && item.ticker === prevYld.ticker) {
+      return { ...item, prevYield: prevYld.yield };
     }
-    return { ...initial };
-  };
-  console.log(yldColorArr());
+    return item;
+  });
 
-  // function makeIterator(array) {
-  //   var nextIndex = 0;
-
-  //   return {
-  //     next: function () {
-  //       return nextIndex < array.length
-  //         ? { value: array[nextIndex++], done: false }
-  //         : { done: true };
-  //     },
-  //   };
-  // }
-  // var it = makeIterator(yldColorArr());
-  // console.log(it.next().value);
-  // console.log(it.next().value);
-  // console.log(it.next().value);
-  // console.log(it.next().value);
-  // console.log(it.next().value);
-  // console.log(it.next().value);
-  // console.log(it.next().done);
-  // const colorZzz = () => {
-  //   const iterratorArr = yldColorArr().values();
-  //   for (const item of iterratorArr) {
-  //     return item;
-  //   }
-  // };
-  // console.log(colorZzz());
-
-  // const colorZzz = () => {
-  //   for (const color of yldColorArr()) {
-  //     return color;
-  //   }
-  // };
-  // console.log(colorZzz());
-  // const qweqwe = makeIterator(yldColorArr());
-  // console.log(value);
-  // const yldColor = () => {
-  //   for (let color of yldColArr) {
-  //     return color;
-  //   }
-  // };
-  // console.log(yldColor());
+  console.log(newTickers);
 
   return (
     <>
@@ -143,8 +87,8 @@ const TickersList = () => {
             </Text>
           </Box>
         </Flex>
-        {tickers.length > 0 &&
-          tickers.map(
+        {newTickers.length > 0 &&
+          newTickers.map(
             ({
               ticker,
               exchange,
@@ -154,13 +98,12 @@ const TickersList = () => {
               dividend,
               yield: yld,
               last_trade_time,
+              prevYield,
             }) => {
-              oldArr.push({ ticker: ticker, yield: yld });
-
               const time = moment(last_trade_time).format('MMM DD hh:mm:ss ');
               const dividentColor = dividend < 0.5 ? 'red' : 'green';
-              const yildColor =
-                yld < 0.5 ? 'red' : yld > 1 ? 'green' : 'orange';
+              console.log(yld);
+              const yildColor = yld < prevYield ? 'red' : 'green';
 
               return (
                 <li key={ticker}>
